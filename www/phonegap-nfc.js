@@ -416,6 +416,19 @@ var nfc = {
         cordova.exec(win, fail, "NfcPlugin", "registerTag", []);
     },
 
+   
+    writeMlu: function (url,amount,operation,callback, win, fail) {
+        console.log("add nfca-mlu-write listener on NfcPlugin");
+        document.addEventListener("nfca-mlu-write", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "registerMluTagWrite", [url,amount,operation]);
+    },
+    readMlu: function (url,operation,callback, win, fail) {
+        console.log("add nfca-mlu-read listener on NfcPlugin");
+        document.addEventListener("nfca-mlu-read", callback, false);      
+        cordova.exec(win, fail, "NfcPlugin", "registerMluTag", [url,operation]);
+    },
+
+
     addMimeTypeListener: function (mimeType, callback, win, fail) {
         document.addEventListener("ndef-mime", callback, false);
         cordova.exec(win, fail, "NfcPlugin", "registerMimeType", [mimeType]);
@@ -465,6 +478,17 @@ var nfc = {
 
     enabled: function (win, fail) {
         cordova.exec(win, fail, "NfcPlugin", "enabled", [[]]);
+    },
+
+    removeMluRead: function (callback, win, fail) {
+        console.log("remove nfca-mlu-read listener on NfcPlugin");
+        document.removeEventListener("nfca-mlu-read", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "removeMluRead", []);
+    },
+    removeMluWrite: function (callback, win, fail) {
+        console.log("remove nfca-mlu-write listener on NfcPlugin");
+        document.removeEventListener("nfca-mlu-write", callback, false);
+        cordova.exec(win, fail, "NfcPlugin", "removeMluWrite", []);
     },
 
     removeTagDiscoveredListener: function (callback, win, fail) {
@@ -525,6 +549,12 @@ var nfc = {
             }
 
             cordova.exec(resolve, reject, 'NfcPlugin', 'transceive', [buffer]);
+        });
+    },
+
+    getMaxSize: function() {
+        return new Promise(function(resolve, reject) {           
+            cordova.exec(resolve, reject, 'NfcPlugin', 'getMaxSize');
         });
     },
 
@@ -864,10 +894,11 @@ require('cordova/channel').onCordovaReady.subscribe(function() {
     if (!message.type) { 
         console.log(message);
     } else {
-        console.log("Received NFC data, firing '" + message.type + "' event");
+        
         var e = document.createEvent('Events');
         e.initEvent(message.type);
         e.tag = message.tag;
+        //console.log("Received NFC data, firing '" + message.type + "' event",e);
         document.dispatchEvent(e);
     }
   }

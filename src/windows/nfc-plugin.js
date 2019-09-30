@@ -115,6 +115,19 @@ var self = {
         self.listeningForNonNdefTags = true;
         success();
     },
+    addMluListener: function(success, failure, args) {
+        self.listeningForNonNdefTags = true;
+        success();
+    },
+    writeMlu: function(success, failure, args) {
+        self.listeningForNonNdefTags = true;
+        success();
+    },
+    readMlu: function(success, failure, args) {
+        self.listeningForNonNdefTags = true;
+        success();
+    },
+    
     remoteTagDiscoveredListener: function(success, failure, args) {
         self.listeningForNonNdefTags = false;
         success();
@@ -273,8 +286,12 @@ module.exports = {
     init: self.init,
     registerNdef: self.registerNdef,
     removeNdef: self.removeNdef,
-    registerTag: self.addTagDiscoveredListener,
+    registerTag: self.addTagDiscoveredListener,    
+    writeMlu: self.writeMlu,
+    readMlu: self.readMlu,
     remoteTag: self.removeTagDiscoveredListener,
+    removeMluRead: self.removeMluRead,
+    removeMluWrite : self.removeMluWrite,
     writeTag: self.writeTag,
     shareTag: self.shareTag,
     unshareTag: self.unshareTag,

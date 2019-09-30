@@ -19,13 +19,18 @@
             <runs />
         </js-module>
 
-        <config-file target="res/xml/config.xml" parent="/*">
+        <config-file target="res/xml/config.xml" parent="/*">           
             <feature name="NfcPlugin">
                 <param name="android-package" value="com.chariotsolutions.nfc.plugin.NfcPlugin"/>
                 <param name="onload" value="true" />
             </feature>
+            
         </config-file>
 
+        <source-file src="src/android/src/com/chariotsolutions/nfc/plugin/INFCDataListener.java"
+            target-dir="src/com/chariotsolutions/nfc/plugin"/>
+        <source-file src="src/android/src/com/chariotsolutions/nfc/plugin/AndroidNFCHelper.java"
+            target-dir="src/com/chariotsolutions/nfc/plugin"/>
         <source-file src="src/android/src/com/chariotsolutions/nfc/plugin/NfcPlugin.java"
             target-dir="src/com/chariotsolutions/nfc/plugin"/>
         <source-file src="src/android/src/com/chariotsolutions/nfc/plugin/Util.java"

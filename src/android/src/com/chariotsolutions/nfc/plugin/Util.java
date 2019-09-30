@@ -63,6 +63,47 @@ public class Util {
         return json;
     }
 
+    static JSONObject successToJSON(Tag tag,JSONObject json) {
+        
+        try {
+            json.put("id", byteArrayToJSON(tag.getId()));
+            json.put("error", "");     
+            json.put("message", "");             
+        } catch (JSONException e) {
+            Log.e(TAG, "Failed to convert into json: " , e);
+        }
+        
+        return json;
+    }
+
+    static JSONObject errorToJSON(String error) {
+        JSONObject json = new JSONObject();
+
+        if (error != null) {
+            try {
+                json.put("error", error);     
+                json.put("message", "");             
+            } catch (JSONException e) {
+                Log.e(TAG, "Failed to convert error into json: " + error, e);
+            }
+        }
+        return json;
+    }
+
+    static JSONObject msgToJSON(String message) {
+        JSONObject json = new JSONObject();
+
+        if (message != null) {
+            try {
+                json.put("message", message);   
+                json.put("error", "");                
+            } catch (JSONException e) {
+                Log.e(TAG, "Failed to convert error into json: " + message, e);
+            }
+        }
+        return json;
+    }
+
     static String translateType(String type) {
         String translation;
         if (type.equals(Ndef.NFC_FORUM_TYPE_1)) {

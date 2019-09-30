@@ -79,6 +79,8 @@ The initial iOS version plugin does not support scanning multiple tags (invalida
 
 - [nfc.addNdefListener](#nfcaddndeflistener)
 - [nfc.addTagDiscoveredListener](#nfcaddtagdiscoveredlistener)
+- [nfc.readMlu](#nfcreadMlu)
+- [nfc.writeMlu](#nfcwriteMlu)
 - [nfc.addMimeTypeListener](#nfcaddmimetypelistener)
 - [nfc.addNdefFormatableListener](#nfcaddndefformatablelistener)
 - [nfc.write](#nfcwrite)
@@ -184,6 +186,57 @@ This event occurs when any tag is detected by the phone.
 - BlackBerry 7
 
 Note that Windows Phones need the newere NXP PN427 chipset to read non-NDEF tags. That tag will be read, but no tag meta-data is available.
+
+## nfc.readMlu
+
+Registers an event listener for tags Mifare Ultralight C.
+
+    nfc.readMlu(url,operation,callback, [onSuccess], [onFailure]);
+
+### Parameters
+- __url__: The URL of the api .
+- __operation__: The id of operation .
+- __callback__: The callback that is called when a tag is detected.
+- __onSuccess__: (Optional) The callback that is called when the listener is added.
+- __onFailure__: (Optional) The callback that is called if there was an error.
+
+### Description
+
+Function `nfc.readMlu` registers the callback for tag events.
+The event as success, error or message to the parse the result
+
+This event occurs when mifare ultralight c tag is detected by the phone.
+
+### Supported Platforms
+
+- Android
+
+## nfc.writeMlu
+
+Registers an event listener for tags Mifare Ultralight C.
+
+    nfc.writeMlu(url,amount,operation,callback, [onSuccess], [onFailure]);
+
+### Parameters
+- __url__: The URL of the api .
+- __amount__: The value for write in to tag.
+- __operation__: The id of operation .
+- __callback__: The callback that is called when a tag is detected.
+- __onSuccess__: (Optional) The callback that is called when the listener is added.
+- __onFailure__: (Optional) The callback that is called if there was an error.
+
+### Description
+
+Function `nfc.writeMlu` registers the callback for tag events.
+The event as success, error or message to the parse the result
+
+This event occurs when mifare ultralight c tag is detected by the phone.
+
+
+### Supported Platforms
+
+- Android
+
 
 ## nfc.removeTagDiscoveredListener
 
