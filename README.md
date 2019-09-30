@@ -81,6 +81,8 @@ The initial iOS version plugin does not support scanning multiple tags (invalida
 - [nfc.addTagDiscoveredListener](#nfcaddtagdiscoveredlistener)
 - [nfc.readMlu](#nfcreadMlu)
 - [nfc.writeMlu](#nfcwriteMlu)
+- [nfc.removeMluRead](#nfcremoveMluRead)
+- [nfc.removeMluWrite](#nfcremoveMluWrite)
 - [nfc.addMimeTypeListener](#nfcaddmimetypelistener)
 - [nfc.addNdefFormatableListener](#nfcaddndefformatablelistener)
 - [nfc.write](#nfcwrite)
@@ -196,7 +198,7 @@ Registers an event listener for tags Mifare Ultralight C.
 ### Parameters
 - __url__: The URL of the api .
 - __operation__: The id of operation .
-- __callback__: The callback that is called when a tag is detected.
+- __callback__: The callback that is called. This work like an open channel
 - __onSuccess__: (Optional) The callback that is called when the listener is added.
 - __onFailure__: (Optional) The callback that is called if there was an error.
 
@@ -221,7 +223,7 @@ Registers an event listener for tags Mifare Ultralight C.
 - __url__: The URL of the api .
 - __amount__: The value for write in to tag.
 - __operation__: The id of operation .
-- __callback__: The callback that is called when a tag is detected.
+- __callback__: The callback that is called. This work like an open channel.
 - __onSuccess__: (Optional) The callback that is called when the listener is added.
 - __onFailure__: (Optional) The callback that is called if there was an error.
 
@@ -232,6 +234,42 @@ The event as success, error or message to the parse the result
 
 This event occurs when mifare ultralight c tag is detected by the phone.
 
+
+### Supported Platforms
+
+- Android
+
+## nfc.removeMluRead
+
+Removes the previously registered event listener added via `nfc.removeMluRead`.
+
+    nfc.removeMluRead(callback, [onSuccess], [onFailure]);
+
+Removing listeners is not recommended. Instead, consider that your callback can ignore messages you no longer need.
+
+### Parameters
+
+- __callback__: The previously registered callback.
+- __onSuccess__: (Optional) The callback that is called when the listener is successfully removed.
+- __onFailure__: (Optional) The callback that is called if there was an error during removal.
+
+### Supported Platforms
+
+- Android
+
+## nfc.removeMluWrite
+
+Removes the previously registered event listener added via `nfc.removeMluWrite`.
+
+    nfc.removeMluRead(callback, [onSuccess], [onFailure]);
+
+Removing listeners is not recommended. Instead, consider that your callback can ignore messages you no longer need.
+
+### Parameters
+
+- __callback__: The previously registered callback.
+- __onSuccess__: (Optional) The callback that is called when the listener is successfully removed.
+- __onFailure__: (Optional) The callback that is called if there was an error during removal.
 
 ### Supported Platforms
 
